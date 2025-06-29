@@ -7,10 +7,10 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import CustomUser
 from .serializers import CustomUserSerializer
 
+
 class CustomUserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer
-
 
 
 class MyTokenObtainPairView(TokenObtainPairView):

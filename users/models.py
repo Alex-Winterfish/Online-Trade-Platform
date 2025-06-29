@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractUser, Permission, Group
 
 class CustomUser(AbstractUser):
     """Модель пользователя model: users.CustomUser"""
+
     email = models.EmailField(unique=True, verbose_name="Email")
     phone = models.CharField(
         max_length=35,
@@ -17,13 +18,13 @@ class CustomUser(AbstractUser):
     )
     groups = models.ManyToManyField(
         Group,
-        related_name='customuser_groups',
+        related_name="customuser_groups",
         blank=True,
     )
 
     user_permissions = models.ManyToManyField(
         Permission,
-        related_name='customuser_permissions',
+        related_name="customuser_permissions",
         blank=True,
     )
 
