@@ -1,0 +1,98 @@
+[
+{
+    "model": "trade_net.netunit",
+    "pk": 1,
+    "fields": {
+        "type": "Завод",
+        "name": "Завод бытовой техники",
+        "email": "manuf_1@gmail.com",
+        "country": "Китай",
+        "city": "Пекин",
+        "address": "ул. Ленина д.2",
+        "is_supplier": false,
+        "supplier": null,
+        "dept": 0.0,
+        "created_at": "2025-06-28T11:44:05.212Z"
+    }
+},
+{
+    "model": "trade_net.netunit",
+    "pk": 2,
+    "fields": {
+        "type": "Завод",
+        "name": "Завод Огр Техники",
+        "email": "manuf_2@mail.com",
+        "country": "Россия",
+        "city": "Москва",
+        "address": "Космонавтов 11",
+        "is_supplier": false,
+        "supplier": null,
+        "dept": 0.0,
+        "created_at": "2025-06-28T11:45:00.299Z"
+    }
+},
+{
+    "model": "trade_net.netunit",
+    "pk": 3,
+    "fields": {
+        "type": "Торговая сеть",
+        "name": "Эльдорадо",
+        "email": "eldorado@mai.com",
+        "country": "Россия",
+        "city": "Пермь",
+        "address": "ул. Джержинского д.2",
+        "is_supplier": false,
+        "supplier": 1,
+        "dept": 0.0,
+        "created_at": "2025-06-28T11:57:52.005Z"
+    }
+},
+{
+    "model": "trade_net.netunit",
+    "pk": 4,
+    "fields": {
+        "type": "ИП",
+        "name": "ИП Малахов",
+        "email": "ep_malahov@mail.com",
+        "country": "Россия",
+        "city": "Старый Оскол",
+        "address": "мкр Степной д.1",
+        "is_supplier": false,
+        "supplier": null,
+        "dept": 0.0,
+        "created_at": "2025-06-28T12:00:02.664Z"
+    }
+},
+{
+    "model": "trade_net.netunit",
+    "pk": 5,
+    "fields": {
+        "type": "Торговая сеть",
+        "name": "Эльдорадо",
+        "email": "eldorado@mail.com",
+        "country": "Россия",
+        "city": "Старый Оскол",
+        "address": "мкр Дубрава д.23",
+        "is_supplier": false,
+        "supplier": null,
+        "dept": 0.0,
+        "created_at": "2025-06-28T12:01:12.129Z"
+    }
+},
+{
+    "model": "trade_net.netunit",
+    "pk": 6,
+    "fields": {
+        "type": "ИП",
+        "name": "ИП Коршунов",
+        "email": "korshunov@mail.ru",
+        "country": "Россия",
+        "city": "Воронеж",
+        "address": "ул. 1905 года д.45",
+        "is_supplier": false,
+        "supplier": null,
+        "dept": 0.0,
+        "created_at": "2025-06-28T12:02:36.250Z"
+    }
+}
+]

@@ -1,0 +1,22 @@
+[
+{
+    "model": "trade_net.product",
+    "pk": 1,
+    "fields": {
+        "name": "Стиральная машина",
+        "model": "Candy M-2",
+        "release_date": "2025-06-10",
+        "manufacture": 1
+    }
+},
+{
+    "model": "trade_net.product",
+    "pk": 2,
+    "fields": {
+        "name": "Принтер",
+        "model": "Python N3",
+        "release_date": "2025-06-28",
+        "manufacture": 2
+    }
+}
+]
