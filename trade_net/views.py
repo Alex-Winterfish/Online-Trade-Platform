@@ -5,6 +5,7 @@ from rest_framework.generics import (
     DestroyAPIView,
     ListAPIView,
 )
+from django_filters.rest_framework import DjangoFilterBackend
 from . import models, serializers
 
 
@@ -13,6 +14,10 @@ class CreateNetUnitView(CreateAPIView):
 
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
+
+    def perform_create(self, serializer):
+        if self.request.data.get('unit_type') == 'Завод':
+            serializer.save(is_supplier=True)
 
 
 class RetrieveNetUnitView(RetrieveAPIView):
@@ -41,6 +46,8 @@ class ListNetUnitView(ListAPIView):
 
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['unit_type', 'city', 'country', 'city']
 
 
 class CreateProductView(CreateAPIView):
