@@ -32,7 +32,7 @@ class NetUnitAdmin(admin.ModelAdmin):
         "dept",
         "created_at",
     ]
-    list_filter = ["type", "name", "country", "city"]
+    list_filter = ["unit_type", "name", "country", "city"]
     search_help_text = ["name", "country", "city"]
     inlines = [ProdictInLine]
     actions = [clear_dept]

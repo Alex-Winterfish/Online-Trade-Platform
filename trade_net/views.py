@@ -24,9 +24,9 @@ class RetrieveNetUnitView(RetrieveAPIView):
 
 class UpdateNetUnitView(UpdateAPIView):
     """Контроллер для изменения объекта сети model:trade_net.models.NetUnit."""
-
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
+
 
 
 class DestroyNetUnit(DestroyAPIView):

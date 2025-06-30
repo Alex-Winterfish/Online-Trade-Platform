@@ -11,7 +11,7 @@ class NetUnit(models.Model):
 
     UNIT_IN_CHOICES = [(EP, "ИП"), (RETAIL, "Сетевой магазин"), (MANUFACTURE, "Завод")]
 
-    type = models.CharField(
+    unit_type = models.CharField(
         verbose_name="Собственник", choices=UNIT_IN_CHOICES, max_length=200
     )
     name = models.CharField(verbose_name="Название", max_length=150)
@@ -19,7 +19,7 @@ class NetUnit(models.Model):
     country = models.CharField(verbose_name="Страна", max_length=100)
     city = models.CharField(verbose_name="Город", max_length=100)
     address = models.CharField(verbose_name="адрес", max_length=300)
-    is_supplier = models.BooleanField()
+    is_supplier = models.BooleanField(default=False)
     supplier = models.ForeignKey(
         "trade_net.NetUnit", on_delete=models.SET_NULL, null=True, blank=True
     )
@@ -29,10 +29,10 @@ class NetUnit(models.Model):
     created_at = models.DateTimeField(verbose_name="время создания", auto_now_add=True)
 
     def __str__(self):
-        if self.is_supplier and self.type != "Завод":
-            return f"Поставщик: {self.type} {self.name}."
-        elif not self.is_supplier and self.type != "Завод":
-            return f"Точка сбыта: {self.type} {self.name}."
+        if self.is_supplier and self.unit_type != "Завод":
+            return f"Поставщик: {self.unit_type} {self.name}."
+        elif not self.is_supplier and self.unit_type != "Завод":
+            return f"Точка сбыта: {self.unit_type} {self.name}."
         else:
             return f"Завод изготовитель {self.name}"
 
