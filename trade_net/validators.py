@@ -1,3 +1,4 @@
+import re
 from rest_framework.serializers import ValidationError
 from . import models
 
@@ -51,3 +52,18 @@ class NameValidator:
         if field_type == 'Торговая сеть':
             if models.NetUnit.objects.filter(city=field_city, address=field_address).exists():
                 raise ValidationError('Магазин торговой сети по этому адресу уже существует!')
+
+
+class AddressValidator:
+    '''Валидатор для заполнеия поля address'''
+
+    def __init__(self, field_address):
+        self.field_address = field_address
+
+
+    def __call__(self, value):
+        field_address = dict(value).get(self.field_address, False)
+        re_address = re.compile(r'^(ул\.|мкр\.)\s+[А-Яа-яЁё\s]+,\s*(д\.|корп\.|стр\.)\s*\d+$')
+        if field_address:
+            if not re_address.match(field_address):
+                raise ValidationError('Адрес должен иметь вид: ул./мкр."Название", д./корп./стр. "Номер"')

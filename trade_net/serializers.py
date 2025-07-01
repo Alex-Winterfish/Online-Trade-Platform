@@ -32,6 +32,12 @@ class NetUnitSerializer(serializers.ModelSerializer):
                 return ProductSerializer(queryset, many=True).data
         return []
 
+    def update(self, instance, validated_data):
+        '''Метод запрещает обновление поля dept(задолжность перед поставщиком) при обновлении модели.'''
+        validated_data.pop('dept', None)
+        return super().update(instance, validated_data)
+
+
 
 
     class Meta:
@@ -48,11 +54,13 @@ class NetUnitSerializer(serializers.ModelSerializer):
             'supplier',
             "dept",
             'produced_prod',
-            'retail_prod'
+            'retail_prod',
+            'created_at'
         ]
 
         validators = [
             validators.IsSupplierValidator(field_sup='supplier'),
-            validators.NameValidator(field_name='name', field_city='city', field_type='unit_type', field_address='address')
+            validators.NameValidator(field_name='name', field_city='city', field_type='unit_type', field_address='address'),
+            validators.AddressValidator(field_address='address')
 
         ]

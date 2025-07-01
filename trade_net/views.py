@@ -6,6 +6,7 @@ from rest_framework.generics import (
     ListAPIView,
 )
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import permissions
 from . import models, serializers
 
 
@@ -14,6 +15,7 @@ class CreateNetUnitView(CreateAPIView):
 
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
     def perform_create(self, serializer):
         if self.request.data.get('unit_type') == 'Завод':
@@ -25,12 +27,14 @@ class RetrieveNetUnitView(RetrieveAPIView):
 
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class UpdateNetUnitView(UpdateAPIView):
     """Контроллер для изменения объекта сети model:trade_net.models.NetUnit."""
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 
@@ -39,7 +43,7 @@ class DestroyNetUnit(DestroyAPIView):
 
     queryset = models.NetUnit.objects.all()
     serializer_class = serializers.NetUnitSerializer
-
+    permission_classes = (permissions.IsAuthenticated,)
 
 class ListNetUnitView(ListAPIView):
     """Контроллер для получения списка объекта сети model:trade_net.models.NetUnit."""
@@ -48,6 +52,7 @@ class ListNetUnitView(ListAPIView):
     serializer_class = serializers.NetUnitSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['unit_type', 'city', 'country', 'city']
+    permission_classes = (permissions.IsAuthenticated,)
 
 
 class CreateProductView(CreateAPIView):
@@ -55,6 +60,7 @@ class CreateProductView(CreateAPIView):
 
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
+    #permission_classes = (permissions.IsAuthenticated,)
 
 
 class RetrieveProductView(RetrieveAPIView):
@@ -62,6 +68,7 @@ class RetrieveProductView(RetrieveAPIView):
 
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
+    #permission_classes = (permissions.IsAuthenticated,)
 
 
 class UpdateProductView(UpdateAPIView):
@@ -69,17 +76,18 @@ class UpdateProductView(UpdateAPIView):
 
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
-
+    #permission_classes = (permissions.IsAuthenticated,)
 
 class DestroyProductView(DestroyAPIView):
     """Контроллер для удаоения продукта model:trade_net.models.Product."""
 
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
-
+    #permission_classes = (permissions.IsAuthenticated,)
 
 class ListProductView(ListAPIView):
     """Контроллер для получения списка продуктов model:trade_net.models.Product."""
 
     queryset = models.Product.objects.all()
     serializer_class = serializers.ProductSerializer
+    #permission_classes = (permissions.IsAuthenticated,)

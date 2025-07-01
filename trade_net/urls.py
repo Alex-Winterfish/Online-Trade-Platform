@@ -39,6 +39,6 @@ urlpatterns = [
         name="product-destroy",
     ),
     path(
-        "product-list/<int:pk>/", views.ListProductView.as_view(), name="product-list"
+        "product-list/", views.ListProductView.as_view(), name="product-list"
     ),
 ]
