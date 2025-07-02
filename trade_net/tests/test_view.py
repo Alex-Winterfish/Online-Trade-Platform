@@ -10,6 +10,16 @@ class NetUnitCRUDTestCase(APITestCase):
 
     def setUp(self):
 
+        user = {
+                "email": "user_1@mail.com",
+                "username": "User_1",
+                "password": "pbkdf2_sha256$870000$cXDyxcfpSsVnOEgcjD0hd9$e8pQZzj6Q5G5P9MYSjAhJ7He5FEOxhktOcasUGtOxAQ=",
+                "country": "Russia",
+                "is_staff": True
+            }
+
+        self.test_user = CustomUser.objects.create(**user)
+
         net_units = [
             {
                 "unit_type": "Завод",
@@ -40,4 +50,13 @@ class NetUnitCRUDTestCase(APITestCase):
         ]
 
         for net_date in net_units:
-            pass
+            NetUnitModel.objects.create(**net_date)
+
+        self.client.force_authenticate(user=self.test_user)
+
+    def test_get_netunit(self):
+        '''Тестирование проверяет получение списка model:trade_net.models.NetUnitModel.'''
+
+        request = self.client.get('/net-unit-list/')
+        print(request.__dict__)
+        self.assertEqual(request.status_code,status.HTTP_200_OK)
