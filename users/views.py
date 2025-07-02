@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.utils.decorators import method_decorator
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.permissions import AllowAny
@@ -18,7 +19,7 @@ class CustomUserViewSet(ModelViewSet):
         return super().get_permissions()
 
     def perform_create(self, serializer):
-        user = serializer.save(is_active=True)
+        user = serializer.save(is_active=False, is_staff=True)
         user.set_password(user.password)
         user.save()
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import re
 from rest_framework.serializers import ValidationError
 from . import models
