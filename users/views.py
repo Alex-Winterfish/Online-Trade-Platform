@@ -14,12 +14,12 @@ class CustomUserViewSet(ModelViewSet):
     serializer_class = CustomUserSerializer
 
     def get_permissions(self):
-        if self.action == 'create':
+        if self.action == "create":
             self.permission_classes = [AllowAny]
         return super().get_permissions()
 
     def perform_create(self, serializer):
-        user = serializer.save(is_active=False, is_staff=True)
+        user = serializer.save(is_active=True, is_staff=True)
         user.set_password(user.password)
         user.save()
 

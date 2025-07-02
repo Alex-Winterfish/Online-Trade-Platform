@@ -1,6 +1,6 @@
 [
 {
-    "model": "trade_net.product",
+    "model": "trade_net.productmodel",
     "pk": 1,
     "fields": {
         "name": "Стиральная машина",
@@ -10,7 +10,7 @@
     }
 },
 {
-    "model": "trade_net.product",
+    "model": "trade_net.productmodel",
     "pk": 2,
     "fields": {
         "name": "Принтер",

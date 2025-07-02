@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.contrib import admin
 
-from .models import Product, NetUnit
+from .models import ProductModel, NetUnitModel
 
 
 @admin.action(description="Очистить задолженость")
@@ -10,18 +10,18 @@ def clear_dept(modeladmin, request, queryset):
 
 
 class ProdictInLine(admin.TabularInline):
-    model = Product
+    model = ProductModel
     extra = 0
 
 
-@admin.register(Product)
+@admin.register(ProductModel)
 class ProductAdmin(admin.ModelAdmin):
     list_display = ["name", "model", "release_date", "manufacture"]
     list_filter = ["name", "model", "release_date", "manufacture"]
     search_help_text = "name"
 
 
-@admin.register(NetUnit)
+@admin.register(NetUnitModel)
 class NetUnitAdmin(admin.ModelAdmin):
     list_display = [
         "name",

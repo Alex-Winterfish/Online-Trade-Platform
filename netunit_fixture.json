@@ -1,9 +1,9 @@
 [
 {
-    "model": "trade_net.netunit",
+    "model": "trade_net.netunitmodel",
     "pk": 1,
     "fields": {
-        "type": "Завод",
+        "unit_type": "Завод",
         "name": "Завод бытовой техники",
         "email": "manuf_1@gmail.com",
         "country": "Китай",
@@ -16,10 +16,10 @@
     }
 },
 {
-    "model": "trade_net.netunit",
+    "model": "trade_net.netunitmodel",
     "pk": 2,
     "fields": {
-        "type": "Завод",
+        "unit_type": "Завод",
         "name": "Завод Огр Техники",
         "email": "manuf_2@mail.com",
         "country": "Россия",
@@ -32,10 +32,10 @@
     }
 },
 {
-    "model": "trade_net.netunit",
+    "model": "trade_net.netunitmodel",
     "pk": 3,
     "fields": {
-        "type": "Торговая сеть",
+        "unit_type": "Торговая сеть",
         "name": "Эльдорадо",
         "email": "eldorado@mai.com",
         "country": "Россия",
@@ -48,10 +48,10 @@
     }
 },
 {
-    "model": "trade_net.netunit",
+    "model": "trade_net.netunitmodel",
     "pk": 4,
     "fields": {
-        "type": "ИП",
+        "unit_type": "ИП",
         "name": "ИП Малахов",
         "email": "ep_malahov@mail.com",
         "country": "Россия",
@@ -64,10 +64,10 @@
     }
 },
 {
-    "model": "trade_net.netunit",
+    "model": "trade_net.netunitmodel",
     "pk": 5,
     "fields": {
-        "type": "Торговая сеть",
+        "unit_type": "Торговая сеть",
         "name": "Эльдорадо",
         "email": "eldorado@mail.com",
         "country": "Россия",
@@ -80,10 +80,10 @@
     }
 },
 {
-    "model": "trade_net.netunit",
+    "model": "trade_net.netunitmodel",
     "pk": 6,
     "fields": {
-        "type": "ИП",
+        "unit_type": "ИП",
         "name": "ИП Коршунов",
         "email": "korshunov@mail.ru",
         "country": "Россия",

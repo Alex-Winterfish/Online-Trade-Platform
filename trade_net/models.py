@@ -2,7 +2,7 @@
 from django.db import models
 
 
-class NetUnit(models.Model):
+class NetUnitModel(models.Model):
     """Модель элемента цепи сбыта"""
 
     EP = "ИП"  # индивидуальный предприниматель
@@ -21,7 +21,7 @@ class NetUnit(models.Model):
     address = models.CharField(verbose_name="адрес", max_length=300)
     is_supplier = models.BooleanField(default=False)
     supplier = models.ForeignKey(
-        "trade_net.NetUnit", on_delete=models.SET_NULL, null=True, blank=True
+        "trade_net.NetUnitModel", on_delete=models.SET_NULL, null=True, blank=True
     )
     dept = models.FloatField(
         verbose_name="задолженность перед поставщиком", default=0.0
@@ -41,14 +41,17 @@ class NetUnit(models.Model):
         verbose_name_plural = "Торговая сеть"
 
 
-class Product(models.Model):
+class ProductModel(models.Model):
     """Модель продукта"""
 
     name = models.CharField(verbose_name="Название", max_length=200)
     model = models.CharField(verbose_name="Модель", max_length=200)
     release_date = models.DateField(verbose_name="Дата выхода продукта на рынок")
     manufacture = models.ForeignKey(
-        "trade_net.NetUnit", verbose_name="Завод изготовитель", on_delete=models.CASCADE, related_name='products'
+        "trade_net.NetUnitModel",
+        verbose_name="Завод изготовитель",
+        on_delete=models.CASCADE,
+        related_name="products",
     )
 
     def __str__(self):

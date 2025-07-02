@@ -38,7 +38,5 @@ urlpatterns = [
         views.DestroyProductView.as_view(),
         name="product-destroy",
     ),
-    path(
-        "product-list/", views.ListProductView.as_view(), name="product-list"
-    ),
+    path("product-list/", views.ListProductView.as_view(), name="product-list"),
 ]

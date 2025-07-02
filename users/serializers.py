@@ -7,10 +7,4 @@ class CustomUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = [
-            "email",
-            "username",
-            "password",
-            "country",
-            "phone",
-        ]
+        fields = ["email", "password", "username"]
