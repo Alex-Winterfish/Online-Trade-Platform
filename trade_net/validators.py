@@ -15,8 +15,8 @@ class IsManufactureValidator:
         field_manuf = dict(value).get(self.field_manuf, False)
 
         if field_manuf:
-            manuf = models.NetUnitModel.objects.filter(id=field_manuf.id)
-            if manuf.unit_type != "Завод":
+            manuf = models.NetUnitModel.objects.get(id=field_manuf.id)
+            if manuf and manuf.unit_type != "Завод":
                 raise ValidationError("Объект сети не является заводом производителе!")
 
 

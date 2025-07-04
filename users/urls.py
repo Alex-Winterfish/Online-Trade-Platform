@@ -10,6 +10,8 @@ app_name = UsersConfig.name
 router = SimpleRouter()
 router.register("users", views.CustomUserViewSet)
 
+register = views.CustomUserViewSet.as_view({'post': 'create'})
+
 urlpatterns = [
     path("login/", views.MyTokenObtainPairView.as_view(), name="login"),
     path(
@@ -17,4 +19,5 @@ urlpatterns = [
         TokenRefreshView.as_view(permission_classes=(AllowAny)),
         name="token_refresh",
     ),
+    path('register/', register, name='register')
 ] + router.urls
