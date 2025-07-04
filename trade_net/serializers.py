@@ -9,7 +9,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ProductModel
         fields = ["name", "model", "release_date", "manufacture"]
-        validators = validators.IsManufactureValidator
+        validators = [validators.IsManufactureValidator(field_manuf='manufacture')]
 
 
 class NetUnitSerializer(serializers.ModelSerializer):
