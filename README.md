@@ -340,6 +340,7 @@ http://127.0.0.1:8000/net-unit-list?country=Россия&city=Москва&level
 ```commandline
 coverage run manage.py test
 ```
+```
 Name                                   Stmts   Miss  Cover
 ----------------------------------------------------------
 __init__.py                                0      0   100%
@@ -373,7 +374,7 @@ users\urls.py                             11      0   100%
 users\views.py                            32     10    69%
 ----------------------------------------------------------
 TOTAL                                    429     37    91%
-
+```
 Отчет о покрытии тестами сохранен в html
 
 
