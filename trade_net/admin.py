@@ -23,6 +23,13 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(NetUnitModel)
 class NetUnitAdmin(admin.ModelAdmin):
+
+    def get_inline_instances(self, request, obj=None):
+        inline_instances = super().get_inline_instances(request, obj)
+        if obj and obj.unit_type == 'Завод':
+            return inline_instances
+        return []
+
     list_display = [
         "name",
         "email",
@@ -32,8 +39,10 @@ class NetUnitAdmin(admin.ModelAdmin):
         "supplier",
         "dept",
         "created_at",
+        "level"
     ]
-    list_filter = ["unit_type", "name", "country", "city"]
+    list_filter = ["unit_type", "name", "country", "city", "level"]
     search_help_text = ["name", "country", "city"]
     inlines = [ProdictInLine]
     actions = [clear_dept]
+

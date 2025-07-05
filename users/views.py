@@ -8,7 +8,42 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import CustomUser
 from .serializers import CustomUserSerializer
 
-
+@method_decorator(
+    name="retrieve",
+    decorator=swagger_auto_schema(
+        operation_description="Получение объекта :model:users.CustomUser.",
+    ),
+)
+@method_decorator(
+    name="create",
+    decorator=swagger_auto_schema(
+        operation_description="Создание объекта :model:users.CustomUser.",
+    ),
+)
+@method_decorator(
+    name="list",
+    decorator=swagger_auto_schema(
+        operation_description="Получение списка объектов :model:users.CustomUser.",
+    ),
+)
+@method_decorator(
+    name="update",
+    decorator=swagger_auto_schema(
+        operation_description="Изменение объекта :model:users.CustomUser.",
+    ),
+)
+@method_decorator(
+    name="partial_update",
+    decorator=swagger_auto_schema(
+        operation_description="Частичное изменение объекта :model:users.CustomUser.",
+    ),
+)
+@method_decorator(
+    name="destroy",
+    decorator=swagger_auto_schema(
+        operation_description="Удаление объектов :model:users.CustomUser.",
+    ),
+)
 class CustomUserViewSet(ModelViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = CustomUserSerializer

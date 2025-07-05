@@ -20,7 +20,11 @@ class CreateNetUnitView(CreateAPIView):
 
     def perform_create(self, serializer):
         if self.request.data.get("unit_type") == "Завод":
-            serializer.save(is_supplier=True)
+            serializer.save(is_supplier=True, level='Уровень 0')
+        elif self.request.data.get('is_supplier'):
+            serializer.save(level='Уровень 1')
+        else:
+            serializer.save(level='Уровень 2')
 
 
 class RetrieveNetUnitView(RetrieveAPIView):
@@ -53,7 +57,7 @@ class ListNetUnitView(ListAPIView):
     queryset = models.NetUnitModel.objects.all()
     serializer_class = serializers.NetUnitSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ["unit_type", "city", "country", "city"]
+    filterset_fields = ["unit_type", "city", "country", "level"]
     permission_classes = (permissions.IsActiveStaff,)
 
 
