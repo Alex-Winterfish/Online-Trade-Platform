@@ -29,7 +29,7 @@ python manage.py runserver
 
 
 2. Структура проекта:
-
+```
 Online-Trade-Platform/
 |
 ├───trade_net
@@ -60,7 +60,7 @@ Online-Trade-Platform/
 |   ├──urls.py
 |   └──views.py
 └───venv
-
+```
 
 3. Описание моделей:
 
