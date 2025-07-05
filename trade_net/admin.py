@@ -1,3 +1,47 @@
+# -*- coding: utf-8 -*-
 from django.contrib import admin
 
-# Register your models here.
+from .models import ProductModel, NetUnitModel
+
+
+@admin.action(description="Очистить задолженость")
+def clear_dept(modeladmin, request, queryset):
+    queryset.update(dept=0.0)
+
+
+class ProdictInLine(admin.TabularInline):
+    model = ProductModel
+    extra = 0
+
+
+@admin.register(ProductModel)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ["name", "model", "release_date", "manufacture"]
+    list_filter = ["name", "model", "release_date", "manufacture"]
+    search_help_text = "name"
+
+
+@admin.register(NetUnitModel)
+class NetUnitAdmin(admin.ModelAdmin):
+
+    def get_inline_instances(self, request, obj=None):
+        inline_instances = super().get_inline_instances(request, obj)
+        if obj and obj.unit_type == "Завод":
+            return inline_instances
+        return []
+
+    list_display = [
+        "name",
+        "email",
+        "country",
+        "city",
+        "address",
+        "supplier",
+        "dept",
+        "created_at",
+        "level",
+    ]
+    list_filter = ["unit_type", "name", "country", "city", "level"]
+    search_help_text = ["name", "country", "city"]
+    inlines = [ProdictInLine]
+    actions = [clear_dept]
