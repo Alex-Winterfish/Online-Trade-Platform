@@ -8,6 +8,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from .models import CustomUser
 from .serializers import CustomUserSerializer
 
+
 @method_decorator(
     name="retrieve",
     decorator=swagger_auto_schema(

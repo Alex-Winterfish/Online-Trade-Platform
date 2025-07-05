@@ -8,12 +8,16 @@ class NetUnitModel(models.Model):
     EP = "ИП"  # индивидуальный предприниматель
     RETAIL = "Торговая сеть"  # точка розничной сети
     MANUFACTURE = "Завод"  # завод изготовитель
-    ZERO_LEVEL = 'Уровень 0'  # нулевой уровень сети
-    FIRST_LEVEL = 'Уровень 1'  # первый уровень сети
-    SECOND_LEVEL = 'Уровень 2'  # второй уровень сети
+    ZERO_LEVEL = "Уровень 0"  # нулевой уровень сети
+    FIRST_LEVEL = "Уровень 1"  # первый уровень сети
+    SECOND_LEVEL = "Уровень 2"  # второй уровень сети
 
     UNIT_IN_CHOICES = [(EP, "ИП"), (RETAIL, "Сетевой магазин"), (MANUFACTURE, "Завод")]
-    LEVEL_IN_CHOICES = [(ZERO_LEVEL, 'Уровень 0'), (FIRST_LEVEL, 'Уровень 1'), (SECOND_LEVEL, 'Уровень 2')]
+    LEVEL_IN_CHOICES = [
+        (ZERO_LEVEL, "Уровень 0"),
+        (FIRST_LEVEL, "Уровень 1"),
+        (SECOND_LEVEL, "Уровень 2"),
+    ]
 
     unit_type = models.CharField(
         verbose_name="Собственник", choices=UNIT_IN_CHOICES, max_length=200
@@ -31,8 +35,9 @@ class NetUnitModel(models.Model):
         verbose_name="задолженность перед поставщиком", default=0.0
     )
     created_at = models.DateTimeField(verbose_name="время создания", auto_now_add=True)
-    level = models.CharField(verbose_name='уровень элемента в сети', choices=LEVEL_IN_CHOICES, max_length=9)
-
+    level = models.CharField(
+        verbose_name="уровень элемента в сети", choices=LEVEL_IN_CHOICES, max_length=9
+    )
 
     def __str__(self):
         if self.is_supplier and self.unit_type != "Завод":
