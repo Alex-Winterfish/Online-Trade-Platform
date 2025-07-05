@@ -132,7 +132,7 @@ http://127.0.0.1:8000/register/
     "password": 12345
 }
 
-При регистрации пользователя пеле is_staff устанавливается True
+При регистрации пользователя поле is_staff устанавливается True
 
 Аутентификация пользователя осуществляется адресу электронной почты и паролю. Эндпоинт http://127.0.0.1:8000/login/
 
@@ -156,7 +156,168 @@ http://127.0.0.1:8000/product-update/<int:pk>/ - изменение продук
 http://127.0.0.1:8000/product-destroy/<int:pk>/ - удаление продукта
 http://127.0.0.1:8000/product-list/ - получение списка продуктов
 
-3. Фильтры.
+3. Сериализация.
+
+В проекте настроена пагинация. Выводится по 100 объектов.
+Пример вывода списка объектов NetUnitModel:
+
+{
+    "count": 3,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 2,
+            "unit_type": "Завод",
+            "name": "Завод Огр Техники",
+            "email": "manuf_2@mail.com",
+            "country": "Россия",
+            "city": "Москва",
+            "address": "Космонавтов 11",
+            "is_supplier": true,
+            "supplier": null,
+            "dept": 0.0,
+            "produced_prod": [
+                {
+                    "name": "Принтер",
+                    "model": "Python N3",
+                    "release_date": "2025-06-28",
+                    "manufacture": 2
+                }
+            ],
+            "retail_prod": [],
+            "created_at": "2025-06-28T11:45:00.299000Z"
+        },
+        {
+            "id": 7,
+            "unit_type": "Завод",
+            "name": "Тестовый Завод Посуды",
+            "email": "manuf_3@mail.com",
+            "country": "Россия",
+            "city": "Москва",
+            "address": "ул. Космонавтов, д. 12",
+            "is_supplier": true,
+            "supplier": null,
+            "dept": 0.0,
+            "produced_prod": [],
+            "retail_prod": [],
+            "created_at": "2025-07-05T11:05:23.447939Z"
+        },
+        {
+            "id": 1,
+            "unit_type": "Завод",
+            "name": "Завод бытовой техники",
+            "email": "manuf_1@gmail.com",
+            "country": "Китай",
+            "city": "Пекин",
+            "address": "ул. Ленина д.2",
+            "is_supplier": true,
+            "supplier": null,
+            "dept": 0.0,
+            "produced_prod": [
+                {
+                    "name": "Стиральная машина",
+                    "model": "Candy M-2",
+                    "release_date": "2025-06-10",
+                    "manufacture": 1
+                }
+            ],
+            "retail_prod": [],
+            "created_at": "2025-06-28T11:44:05.212000Z"
+        }
+    ]
+}
+
+Пример вывода объекта NetUnitModel уровня 0 (завод):
+
+{
+            "id": 1,
+            "unit_type": "Завод",
+            "name": "Завод бытовой техники",
+            "email": "manuf_1@gmail.com",
+            "country": "Китай",
+            "city": "Пекин",
+            "address": "ул. Ленина д.2",
+            "is_supplier": true,
+            "supplier": null,
+            "dept": 0.0,
+            "produced_prod": [
+                {
+                    "name": "Стиральная машина",
+                    "model": "Candy M-2",
+                    "release_date": "2025-06-10",
+                    "manufacture": 1
+                }
+            ],
+            "retail_prod": [],
+            "created_at": "2025-06-28T11:44:05.212000Z"
+        }
+produced_prod - список объектов ProductModel у которых внешний ключ установлен на текущий объект NetUnitModel ()
+
+Пример вывода объекта NetUnitModel уровня 1 (поставщик, ИП или Торговая сеть ):
+
+{
+    "id": 3,
+    "unit_type": "Торговая сеть",
+    "name": "Эльдорадо",
+    "email": "eldorado@mai.com",
+    "country": "Россия",
+    "city": "Пермь",
+    "address": "ул. Джержинского д.2",
+    "is_supplier": true,
+    "supplier": 1,
+    "dept": 0.0,
+    "produced_prod": [],
+    "retail_prod": [
+        {
+            "name": "Стиральная машина",
+            "model": "Candy M-2",
+            "release_date": "2025-06-10",
+            "manufacture": 1
+        }
+    ],
+    "created_at": "2025-06-28T11:57:52.005000Z"
+}
+
+retail_prod - список объектов ProductModel от связанного объекта завода-производителя.
+
+Пример вывода объекта NetUnitModel уровня 2 (продовец, ИП или Торговая сеть ):
+
+{
+    "id": 4,
+    "unit_type": "ИП",
+    "name": "ИП Малахов",
+    "email": "ep_malahov@mail.com",
+    "country": "Россия",
+    "city": "Старый Оскол",
+    "address": "мкр Степной д.1",
+    "is_supplier": false,
+    "supplier": 3,
+    "dept": 0.0,
+    "produced_prod": [],
+    "retail_prod": [
+        {
+            "name": "Стиральная машина",
+            "model": "Candy M-2",
+            "release_date": "2025-06-10",
+            "manufacture": 1
+        }
+    ],
+    "created_at": "2025-06-28T12:00:02.664000Z"
+}
+
+retail_prod - список объектов ProductModel от связанного объекта поставщика.
+
+Пример вывода объекта ProductModel:
+
+{
+    "name": "Стиральная машина",
+    "model": "Candy M-2",
+    "release_date": "2025-06-10",
+    "manufacture": 1
+}
+
+4. Фильтры.
 
 Настроена фильтрация для списка объектов сети по типу объекта(unit_type), городу(city), стране(country) уровню в иерархии(level)
 
@@ -164,13 +325,13 @@ http://127.0.0.1:8000/product-list/ - получение списка проду
 
 http://127.0.0.1:8000/net-unit-list?country=Россия&city=Москва&level=Уровень 2
 
-4. Админ-панель.
+5. Админ-панель.
 
 В админ панели реализованно admin-action "Очистить задолженность", которое устанавливает значение 0.0 в поле dept модели NetUnitMode. Изменение поля dept через API запрещено в сериализаторе.
 
 Настроена фильтрация по типу элемента сети "Собственник", Названию, Стране, Городу и уровню элемента в сети.
 
-5. Тестировние.
+6. Тестировние.
 
 проект покрыт тестами на 91%
 
